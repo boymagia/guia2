@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Guia</string>
+    <string name="google_maps_key">AIzaSyCQ17mI4couXs3bJwpl32BNDewPdPh428k</string>
+
 </resources>

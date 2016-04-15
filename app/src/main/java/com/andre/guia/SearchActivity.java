@@ -7,6 +7,7 @@ import android.support.v7.widget.CardView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 
@@ -17,11 +18,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SearchActivity extends AppCompatActivity {
-   // private Button buttonLista;
+    // private Button buttonLista;
     private List<CasaEntity> casas;
     private RecyclerView listaCasas;
 
-
+    private Toolbar toolbar;
 
 
     @Override
@@ -29,6 +30,7 @@ public class SearchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
         setUI();
+        setToolbar(getString(R.string.app_name));
         setCasas();
         setRecyclerView();
     }
@@ -37,34 +39,43 @@ public class SearchActivity extends AppCompatActivity {
         //buttonLista = (Button) findViewById(R.id.buton_Lista);
         casas = new ArrayList<>();
         listaCasas = (RecyclerView) findViewById(R.id.lista_casas);
-
-
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
     }
 
+    private void setToolbar(String name){
+        toolbar.setTitle(name);
+        setSupportActionBar(toolbar);
+    }
 
-    private void setCasas(){
+    private void setCasas() {
         CasaEntity casa = new CasaEntity();
         casa.setName("Cravi");
         casa.setAddress("Rua José Serrato, Nº 55 - Boa Vista");
         casa.setDescription("A CRAVI atua na Modalidade de Comunidade Terapêutica");
         casa.setTel("(41) 3356-6100");
         casa.setImage(R.drawable.cravi);
+        casa.setLat(-25.377484);
+        casa.setLng(-49.242441);
         casas.add(casa);
 
-       casa = new CasaEntity();
+        casa = new CasaEntity();
         casa.setName("Emunah Centro de Habilatacao");
         casa.setAddress("Rua Carlos Belão, 464 - Vila Juliana - Piraquara - PR");
         casa.setDescription("");
         casa.setTel("(41) 3590-0518");
         casa.setImage(R.drawable.emanuah);
+        casa.setLat(-25.456100);
+        casa.setLng(-49.069330);
         casas.add(casa);
 
-        casa =  new CasaEntity();
+        casa = new CasaEntity();
         casa.setName("VIVA Clinica Terapeutica");
         casa.setAddress("Rua Sao Sebastiao, 231 - sala 02 e 03, Bairro Ahu - Curitiba/PR");
         casa.setDescription("");
-        casa.setTel("(41) 9118-9091 [vivo] (41) 8743-9072 [claro] ");
+        casa.setTel("(41) 9118-9091");
         casa.setImage(R.drawable.viva);
+        casa.setLat(-25.405545);
+        casa.setLng(-49.259595);
         casas.add(casa);
 
         casa = new CasaEntity();
@@ -73,6 +84,8 @@ public class SearchActivity extends AppCompatActivity {
         casa.setDescription("casa de apoio para usarios");
         casa.setTel("(41) 3244.4155");
         casa.setImage(R.drawable.novaesperanca);
+        casa.setLat(-25.451949);
+        casa.setLng(-49.300083);
         casas.add(casa);
 
         casa = new CasaEntity();
@@ -81,12 +94,14 @@ public class SearchActivity extends AppCompatActivity {
         casa.setDescription("");
         casa.setTel("(41) 3432 0905");
         casa.setImage(R.drawable.grupovale);
+        casa.setLat(-25.440405);
+        casa.setLng(-48.727867);
         casas.add(casa);
 
 
-
     }
-    private void setRecyclerView(){
+
+    private void setRecyclerView() {
 
         listaCasas.setHasFixedSize(true);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
@@ -109,10 +124,9 @@ public class SearchActivity extends AppCompatActivity {
     }
 
 
-
     private void mudarTela(CasaEntity casa) {
         Intent intent = new Intent(SearchActivity.this, DescriptionActivity.class);
-        intent.putExtra("casa",casa);
+        intent.putExtra("casa", casa);
         startActivity(intent);
     }
 

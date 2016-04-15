@@ -11,7 +11,8 @@ public class CasaEntity implements Serializable{
     private  String tel;
     private String description;
     private int image;
-
+    private double lat;
+    private double lng;
 
     public String getName() {
         return name;
@@ -53,6 +54,22 @@ public class CasaEntity implements Serializable{
         this.image = image;
     }
 
+    public double getLat() {
+        return lat;
+    }
+
+    public void setLat(double lat) {
+        this.lat = lat;
+    }
+
+    public double getLng() {
+        return lng;
+    }
+
+    public void setLng(double lng) {
+        this.lng = lng;
+    }
+
     @Override
     public String toString() {
         return "CasaEntity{" +
@@ -61,6 +78,8 @@ public class CasaEntity implements Serializable{
                 ", tel='" + tel + '\'' +
                 ", description='" + description + '\'' +
                 ", image=" + image +
+                ", lat=" + lat +
+                ", lng=" + lng +
                 '}';
     }
 }

@@ -9,10 +9,11 @@
     tools:context="com.andre.guia.SearchActivity">
 
     <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?android:attr/actionBarSize"
         android:background="?attr/colorPrimary"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+        app:titleTextColor="#fff"/>
 
 
     <LinearLayout
