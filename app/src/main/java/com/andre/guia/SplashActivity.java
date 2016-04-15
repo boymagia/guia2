@@ -8,20 +8,39 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class SplashActivity extends AppCompatActivity {
 
     private Button buttonTransicao;
+    private static final int DELAY= 1000;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        setUI();
-        setAction();
+
+
+        TimerTask timerTask =  new TimerTask() {
+            @Override
+            public void run() {
+                mudarTela();
+                finish();
+            }
+        };
+
+        Timer timer = new Timer();
+        timer.schedule(timerTask, DELAY);
+
+        //setUI();
+        //setAction();
     }
 
     private void setUI(){
-        buttonTransicao = (Button) findViewById(R.id.buton_transicao);
+        //buttonTransicao = (Button) findViewById(R.id.buton_transicao);
     }
 
     private void setAction(){

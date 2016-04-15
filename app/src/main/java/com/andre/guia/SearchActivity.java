@@ -4,12 +4,24 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 
+import com.andre.guia.adapter.CasasAdapter;
+import com.andre.guia.entity.CasaEntity;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class SearchActivity extends AppCompatActivity {
-    private Button buttonLista;
-    private CardView cardViewNumero1;
+   // private Button buttonLista;
+    private List<CasaEntity> casas;
+    private RecyclerView listaCasas;
+
+
 
 
     @Override
@@ -17,29 +29,90 @@ public class SearchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
         setUI();
-        setAction();
+        setCasas();
+        setRecyclerView();
     }
 
     private void setUI() {
-        buttonLista = (Button) findViewById(R.id.buton_Lista);
-        cardViewNumero1 = (CardView) findViewById(R.id.card_numero1);
+        //buttonLista = (Button) findViewById(R.id.buton_Lista);
+        casas = new ArrayList<>();
+        listaCasas = (RecyclerView) findViewById(R.id.lista_casas);
+
 
     }
 
 
-    private void setAction() {
-        buttonLista.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //meu codigo
+    private void setCasas(){
+        CasaEntity casa = new CasaEntity();
+        casa.setName("Cravi");
+        casa.setAddress("Rua José Serrato, Nº 55 - Boa Vista");
+        casa.setDescription("A CRAVI atua na Modalidade de Comunidade Terapêutica");
+        casa.setTel("(41) 3356-6100");
+        casa.setImage(R.drawable.cravi);
+        casas.add(casa);
 
-                mudarTela();
-                //mostrar mensagen
+       casa = new CasaEntity();
+        casa.setName("Emunah Centro de Habilatacao");
+        casa.setAddress("Rua Carlos Belão, 464 - Vila Juliana - Piraquara - PR");
+        casa.setDescription("");
+        casa.setTel("(41) 3590-0518");
+        casa.setImage(R.drawable.emanuah);
+        casas.add(casa);
+
+        casa =  new CasaEntity();
+        casa.setName("VIVA Clinica Terapeutica");
+        casa.setAddress("Rua Sao Sebastiao, 231 - sala 02 e 03, Bairro Ahu - Curitiba/PR");
+        casa.setDescription("");
+        casa.setTel("(41) 9118-9091 [vivo] (41) 8743-9072 [claro] ");
+        casa.setImage(R.drawable.viva);
+        casas.add(casa);
+
+        casa = new CasaEntity();
+        casa.setName("Clinica Nova Esperanca");
+        casa.setAddress("Av. Silva Jardim, 4205 Curitiba PR CEP: 80240-021");
+        casa.setDescription("casa de apoio para usarios");
+        casa.setTel("(41) 3244.4155");
+        casa.setImage(R.drawable.novaesperanca);
+        casas.add(casa);
+
+        casa = new CasaEntity();
+        casa.setName("Grupo Vale Comunidade teraupetica");
+        casa.setAddress("Estrada do Saivá, s/n, km 02° Saivá Antonina - PR ");
+        casa.setDescription("");
+        casa.setTel("(41) 3432 0905");
+        casa.setImage(R.drawable.grupovale);
+        casas.add(casa);
+
+
+
+    }
+    private void setRecyclerView(){
+
+        listaCasas.setHasFixedSize(true);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
+        listaCasas.setLayoutManager(mLayoutManager);
+
+        CasasAdapter mAdapter = new CasasAdapter(casas);
+        mAdapter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                int position = listaCasas.getChildLayoutPosition(view);
+                mudarTela(casas.get(position));
+
             }
         });
+
+        listaCasas.setAdapter(mAdapter);
+        listaCasas.setItemAnimator(new DefaultItemAnimator());
+
     }
-    private void mudarTela(){
-        Intent intent = new Intent(SearchActivity.this,DescriptionActivity.class);
+
+
+
+    private void mudarTela(CasaEntity casa) {
+        Intent intent = new Intent(SearchActivity.this, DescriptionActivity.class);
+        intent.putExtra("casa",casa);
         startActivity(intent);
     }
 
