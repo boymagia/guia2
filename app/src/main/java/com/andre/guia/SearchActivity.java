@@ -52,7 +52,7 @@ public class SearchActivity extends AppCompatActivity {
         casa.setName("Cravi");
         casa.setAddress("Rua José Serrato, Nº 55 - Boa Vista");
         casa.setDescription("A CRAVI atua na Modalidade de Comunidade Terapêutica");
-        casa.setTel("(41) 3356-6100");
+        casa.setTel("41 3356 6100");
         casa.setImage(R.drawable.cravi);
         casa.setLat(-25.377484);
         casa.setLng(-49.242441);
@@ -62,7 +62,7 @@ public class SearchActivity extends AppCompatActivity {
         casa.setName("Emunah Centro de Habilatacao");
         casa.setAddress("Rua Carlos Belão, 464 - Vila Juliana - Piraquara - PR");
         casa.setDescription("");
-        casa.setTel("(41) 3590-0518");
+        casa.setTel("41 3590 0518");
         casa.setImage(R.drawable.emanuah);
         casa.setLat(-25.456100);
         casa.setLng(-49.069330);
@@ -72,7 +72,7 @@ public class SearchActivity extends AppCompatActivity {
         casa.setName("VIVA Clinica Terapeutica");
         casa.setAddress("Rua Sao Sebastiao, 231 - sala 02 e 03, Bairro Ahu - Curitiba/PR");
         casa.setDescription("");
-        casa.setTel("(41) 9118-9091");
+        casa.setTel("41 9118 9091");
         casa.setImage(R.drawable.viva);
         casa.setLat(-25.405545);
         casa.setLng(-49.259595);
@@ -82,7 +82,7 @@ public class SearchActivity extends AppCompatActivity {
         casa.setName("Clinica Nova Esperanca");
         casa.setAddress("Av. Silva Jardim, 4205 Curitiba PR CEP: 80240-021");
         casa.setDescription("casa de apoio para usarios");
-        casa.setTel("(41) 3244.4155");
+        casa.setTel("41 3244 4155");
         casa.setImage(R.drawable.novaesperanca);
         casa.setLat(-25.451949);
         casa.setLng(-49.300083);
@@ -92,7 +92,7 @@ public class SearchActivity extends AppCompatActivity {
         casa.setName("Grupo Vale Comunidade teraupetica");
         casa.setAddress("Estrada do Saivá, s/n, km 02° Saivá Antonina - PR ");
         casa.setDescription("");
-        casa.setTel("(41) 3432 0905");
+        casa.setTel("41 3432 0905");
         casa.setImage(R.drawable.grupovale);
         casa.setLat(-25.440405);
         casa.setLng(-48.727867);
