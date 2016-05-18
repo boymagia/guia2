@@ -230,23 +230,23 @@ public class SearchActivity extends AppCompatActivity {
         casas.add(casa);
 
         casa = new CasaEntity();
-        casa.setName("");
-        casa.setAddress("");
-        casa.setDescription(" ");
-        casa.setTel("");
-        casa.setImage(R.drawable.mensageirosdoamor);
-        casa.setLat(-26.7997886);
-        casa.setLng(-49.1125938);
+        casa.setName("Comunidade Católica Irmã Maristela");
+        casa.setAddress("Av. Padre Natal Pigato, 3054 - Rondinha  - Campo Largo PR");
+        casa.setDescription("Internamento exclusivamente voluntário. Dispõe de 12 vagas femininas, oferecem atendimento psicológico, psiquiátrico, terapia ocupacional, yoga. Tempo proposto de internamento 06 meses. A mensalidade é de um salário mínimo, dependendo da avaliação social.\n ");
+        casa.setTel("41 3393-1239");
+        casa.setImage(R.drawable.irmamaria);
+        casa.setLat(-25.4430582);
+        casa.setLng(-49.5049255);
         casas.add(casa);
 
         casa = new CasaEntity();
-        casa.setName("");
-        casa.setAddress("");
-        casa.setDescription(" ");
-        casa.setTel("");
-        casa.setImage(R.drawable.mensageirosdoamor);
-        casa.setLat(-25.4676425);
-        casa.setLng(-49.0639075);
+        casa.setName("EMAUS");
+        casa.setAddress("Rua Alcides Gonçalves da Rocha, 530 - Atuba - Curitiba");
+        casa.setDescription("Internamento exclusivamente voluntário em regime integral por 09meses.Dispõe de 19 vagas masculinas, pacientes com idades a partir de 18 anos. ");
+        casa.setTel("(41) 3356-5397");
+        casa.setImage(R.drawable.novoemaus);
+        casa.setLat(-25.3814331);
+        casa.setLng(-49.2166298);
         casas.add(casa);
 
         casa = new CasaEntity();
