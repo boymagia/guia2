@@ -18,11 +18,14 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="16dp"
+        android:scrollbars="none">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <TextView
@@ -33,36 +36,42 @@
                 android:textColor="#000" />
 
             <CheckBox
+                android:id="@+id/cb_curitiba"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Curitba"
                 android:textSize="18sp" />
 
             <CheckBox
+                android:id="@+id/lapa"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Lapa"
                 android:textSize="18sp" />
 
             <CheckBox
+                android:id="@+id/maringa"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Maringa"
                 android:textSize="18sp" />
 
             <CheckBox
+                android:id="@+id/piraquara"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Piraquara"
                 android:textSize="18sp" />
 
             <CheckBox
+                android:id="@+id/antonina"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Antonina"
                 android:textSize="18sp" />
 
             <CheckBox
+                android:id="@+id/campo_largo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Campo Largo"
@@ -77,102 +86,119 @@
                 android:textColor="#000" />
 
             <CheckBox
+                android:id="@+id/boa_vista"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Boa Vista"
                 android:textSize="18sp" />
 
             <CheckBox
+                android:id="@+id/bairro_alto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Bairro Alto"
                 android:textSize="18sp" />
 
             <CheckBox
+                android:id="@+id/santa_candida"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Santa Candida"
                 android:textSize="18sp" />
 
             <CheckBox
+                android:id="@+id/atuba"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Atuba"
                 android:textSize="18sp" />
 
             <CheckBox
+                android:id="@+id/rondinha"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Rondinha"
                 android:textSize="18sp" />
 
             <CheckBox
+                android:id="@+id/marafigo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Marafigo"
                 android:textSize="18sp" />
 
             <CheckBox
+                android:id="@+id/vila_santiago"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Vila Santiago"
                 android:textSize="18sp" />
 
             <CheckBox
+                android:id="@+id/pinheirinho"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Pinheirinho"
                 android:textSize="18sp" />
 
             <CheckBox
+                android:id="@+id/novo_mundo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Novo Mundo"
                 android:textSize="18sp" />
 
             <CheckBox
+                android:id="@+id/capa_daimbuia"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Capao da Imbuia"
                 android:textSize="18sp" />
 
             <CheckBox
+                android:id="@+id/merces"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Merces"
                 android:textSize="18sp" />
 
             <CheckBox
+                android:id="@+id/xaxim"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Xaxim"
                 android:textSize="18sp" />
 
             <CheckBox
+                android:id="@+id/jardim_dasamericas"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Jardim das Americas"
                 android:textSize="18sp" />
 
             <CheckBox
+                android:id="@+id/centro"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Centro"
                 android:textSize="18sp" />
 
             <CheckBox
+                android:id="@+id/ahu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Ahu"
                 android:textSize="18sp" />
 
             <CheckBox
+                android:id="@+id/batel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Batel"
                 android:textSize="18sp" />
 
             <CheckBox
+                android:id="@+id/vila_juliana"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Vila Juliana "
@@ -182,8 +208,12 @@
 
 
     <Button
-        android:layout_width="wrap_content"
+        android:id="@+id/b_filtrar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:background="@color/colorPrimary"
+        android:textColor="#ffffff"
         android:text="Filtrar" />
 
 
