@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -13,7 +13,9 @@
         android:layout_width="match_parent"
         android:layout_height="?android:attr/actionBarSize"
         android:background="?attr/colorPrimary"
-        app:titleTextColor="#fff"/>
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:titleTextColor="#fff" />
 
 
     <LinearLayout
@@ -23,33 +25,50 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/buton_Lista"
+            android:id="@+id/buton_lista"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@color/colorPrimary"
-            android:text="L ista"
-            android:textColor="#fff"/>
+            android:text="Lista"
+            android:textColor="#fff" />
 
         <Button
-            android:id="@+id/buton_Mapa"
+            android:id="@+id/buton_mapa"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@color/colorPrimary"
             android:text="Mapa"
-            android:textColor="#fff"/>
+            android:textColor="#fff" />
     </LinearLayout>
 
-    <android.support.v7.widget.RecyclerView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/lista_casas"/>
+        android:layout_height="match_parent">
 
+        <RelativeLayout
+            android:id="@+id/rv_map"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone">
 
+            <fragment xmlns:tools="http://schemas.android.com/tools"
+                android:id="@+id/map"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context="com.alvardev.visitcuritiba.MapsActivity" />
 
+        </RelativeLayout>
 
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/lista_casas"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible" />
 
+    </RelativeLayout>
 
 
 </LinearLayout>

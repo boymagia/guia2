@@ -8,21 +8,38 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.TranslateAnimation;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.andre.guia.adapter.CasasAdapter;
 import com.andre.guia.entity.CasaEntity;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.CameraPosition;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SearchActivity extends AppCompatActivity {
+public class SearchActivity extends AppCompatActivity implements OnMapReadyCallback {
     // private Button buttonLista;
     private List<CasaEntity> casas;
     private RecyclerView listaCasas;
-
+    private RelativeLayout rvMap;
     private Toolbar toolbar;
+    private GoogleMap mMap;
+    private Button mapa;
+    private Button butonLista;
 
 
     @Override
@@ -31,8 +48,15 @@ public class SearchActivity extends AppCompatActivity {
         setContentView(R.layout.activity_search);
         setUI();
         setToolbar(getString(R.string.app_name));
+        setActions();
         setCasas();
         setRecyclerView();
+
+
+        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
+
     }
 
     private void setUI() {
@@ -40,11 +64,37 @@ public class SearchActivity extends AppCompatActivity {
         casas = new ArrayList<>();
         listaCasas = (RecyclerView) findViewById(R.id.lista_casas);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
+        butonLista = (Button) findViewById(R.id.buton_lista);
+        mapa = (Button) findViewById(R.id.buton_mapa);
+        rvMap = (RelativeLayout) findViewById(R.id.rv_map);
+
     }
 
     private void setToolbar(String name){
         toolbar.setTitle(name);
+
         setSupportActionBar(toolbar);
+    }
+
+    private void setActions(){
+
+        butonLista.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listaCasas.setVisibility(View.VISIBLE);
+                rvMap.setVisibility(View.GONE);
+            }
+        });
+
+        mapa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listaCasas.setVisibility(View.GONE);
+                rvMap.setVisibility(View.VISIBLE);
+            }
+        });
+
+
     }
 
     private void setCasas() {
@@ -56,6 +106,8 @@ public class SearchActivity extends AppCompatActivity {
         casa.setImage(R.drawable.cravi);
         casa.setLat(-25.377484);
         casa.setLng(-49.242441);
+        casa.setBairro("boa-vista");
+        casa.setCidade("curitiba");
         casas.add(casa);
 
         casa = new CasaEntity();
@@ -66,6 +118,8 @@ public class SearchActivity extends AppCompatActivity {
         casa.setImage(R.drawable.emanuah);
         casa.setLat(-25.456100);
         casa.setLng(-49.069330);
+        casa.setBairro("vilajuliana");
+        casa.setCidade("piraquara");
         casas.add(casa);
 
         casa = new CasaEntity();
@@ -76,6 +130,8 @@ public class SearchActivity extends AppCompatActivity {
         casa.setImage(R.drawable.viva);
         casa.setLat(-25.405545);
         casa.setLng(-49.259595);
+        casa.setBairro("Ahu");
+        casa.setCidade("curitiba");
         casas.add(casa);
 
         casa = new CasaEntity();
@@ -86,6 +142,8 @@ public class SearchActivity extends AppCompatActivity {
         casa.setImage(R.drawable.novaesperanca);
         casa.setLat(-25.451949);
         casa.setLng(-49.300083);
+        casa.setBairro("sao-francisco");
+        casa.setCidade("curitiba");
         casas.add(casa);
 
         casa = new CasaEntity();
@@ -96,6 +154,8 @@ public class SearchActivity extends AppCompatActivity {
         casa.setImage(R.drawable.grupovale);
         casa.setLat(-25.440405);
         casa.setLng(-48.727867);
+        casa.setBairro("centro");
+        casa.setCidade("antonina");
         casas.add(casa);
 
         casa = new CasaEntity();
@@ -106,6 +166,8 @@ public class SearchActivity extends AppCompatActivity {
         casa.setImage(R.drawable.nucleodeintegracaopessoal);
         casa.setLat(-23.4430183);
         casa.setLng(-51.9475101);
+        casa.setBairro("zona-1");
+        casa.setCidade("maringa");
         casas.add(casa);
 
         casa = new CasaEntity();
@@ -116,6 +178,8 @@ public class SearchActivity extends AppCompatActivity {
         casa.setImage(R.drawable.img_bacacheri_park);
         casa.setLat(-25.4502477);
         casa.setLng(-49.2944386);
+        casa.setBairro("batel");
+        casa.setCidade("curitiba");
         casas.add(casa);
 
         casa = new CasaEntity();
@@ -126,6 +190,8 @@ public class SearchActivity extends AppCompatActivity {
         casa.setImage(R.drawable.quintadosol);
         casa.setLat(-25.440405);
         casa.setLng(-48.727867);
+        casa.setBairro("jardim-das-americas");
+        casa.setCidade("curitiba");
         casas.add(casa);
 
         casa = new CasaEntity();
@@ -137,6 +203,8 @@ public class SearchActivity extends AppCompatActivity {
         casa.setImage(R.drawable.centrodetriagemfazdi);
         casa.setLat(25.5129334);
         casa.setLng(-49.235599);
+        casa.setBairro("xaxim");
+        casa.setCidade("curitba");
         casas.add(casa);
 
         casa = new CasaEntity();
@@ -147,6 +215,8 @@ public class SearchActivity extends AppCompatActivity {
         casa.setImage(R.drawable.vidanova);
         casa.setLat(-25.4203706);
         casa.setLng(-49.3014764);
+        casa.setBairro("merces");
+        casa.setCidade("curitiba");
         casas.add(casa);
 
         casa = new CasaEntity();
@@ -157,6 +227,8 @@ public class SearchActivity extends AppCompatActivity {
         casa.setImage(R.drawable.sovida);
         casa.setLat(-25.4416926);
         casa.setLng(-49.2114597);
+        casa.setBairro("capao-da-imbuia");
+        casa.setCidade("curitiba");
         casas.add(casa);
 
         casa = new CasaEntity();
@@ -167,6 +239,8 @@ public class SearchActivity extends AppCompatActivity {
         casa.setImage(R.drawable.associacaoreviver);
         casa.setLat(-25.4681435);
         casa.setLng(-49.5269119);
+        casa.setBairro("centro");
+        casa.setCidade("campo-largo");
         casas.add(casa);
 
         casa = new CasaEntity();
@@ -177,6 +251,8 @@ public class SearchActivity extends AppCompatActivity {
         casa.setImage(R.drawable.casadeapoio);
         casa.setLat(-25.4850206);
         casa.setLng(-49.3018407);
+        casa.setBairro("novo-mundo");
+        casa.setCidade("curitiba");
         casas.add(casa);
 
         casa = new CasaEntity();
@@ -187,6 +263,8 @@ public class SearchActivity extends AppCompatActivity {
         casa.setImage(R.drawable.crenvi);
         casa.setLat(-25.4098945);
         casa.setLng(-49.2264992);
+        casa.setBairro("bacacheri");
+        casa.setCidade("curitiba");
         casas.add(casa);
 
         casa = new CasaEntity();
@@ -197,6 +275,8 @@ public class SearchActivity extends AppCompatActivity {
         casa.setImage(R.drawable.casadoservo);
         casa.setLat(-25.5357107);
         casa.setLng(-49.2884355);
+        casa.setBairro("pinheirinho");
+        casa.setCidade("curitiba");
         casas.add(casa);
 
         casa = new CasaEntity();
@@ -207,6 +287,8 @@ public class SearchActivity extends AppCompatActivity {
         casa.setImage(R.drawable.larberseba);
         casa.setLat(-25.4134586);
         casa.setLng(-49.2214948);
+        casa.setBairro("boa-vista");
+        casa.setCidade("curitiba");
         casas.add(casa);
 
         casa = new CasaEntity();
@@ -217,6 +299,8 @@ public class SearchActivity extends AppCompatActivity {
         casa.setImage(R.drawable.mensageirosdoamor);
         casa.setLat(-25.4676425);
         casa.setLng(-49.0639075);
+        casa.setBairro("vila-sam-tiago");
+        casa.setCidade("piraquara");
         casas.add(casa);
 
         casa = new CasaEntity();
@@ -227,6 +311,8 @@ public class SearchActivity extends AppCompatActivity {
         casa.setImage(R.drawable.cerene);
         casa.setLat(-25.4676425);
         casa.setLng(-49.0639075);
+        casa.setBairro("marafigo");
+        casa.setCidade("lapa");
         casas.add(casa);
 
         casa = new CasaEntity();
@@ -237,6 +323,8 @@ public class SearchActivity extends AppCompatActivity {
         casa.setImage(R.drawable.irmamaria);
         casa.setLat(-25.4430582);
         casa.setLng(-49.5049255);
+        casa.setBairro("rondinha");
+        casa.setCidade("campo-largo");
         casas.add(casa);
 
         casa = new CasaEntity();
@@ -247,17 +335,11 @@ public class SearchActivity extends AppCompatActivity {
         casa.setImage(R.drawable.novoemaus);
         casa.setLat(-25.3814331);
         casa.setLng(-49.2166298);
+        casa.setBairro("atuba");
+        casa.setCidade("curitiba");
         casas.add(casa);
 
-        casa = new CasaEntity();
-        casa.setName("");
-        casa.setAddress("");
-        casa.setDescription(" ");
-        casa.setTel("");
-        casa.setImage(R.drawable.mensageirosdoamor);
-        casa.setLat(-25.4676425);
-        casa.setLng(-49.0639075);
-        casas.add(casa);
+
 
 
     }
@@ -268,7 +350,7 @@ public class SearchActivity extends AppCompatActivity {
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
         listaCasas.setLayoutManager(mLayoutManager);
 
-        CasasAdapter mAdapter = new CasasAdapter(casas);
+        CasasAdapter mAdapter = new CasasAdapter(casas, SearchActivity.this);
         mAdapter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -289,6 +371,51 @@ public class SearchActivity extends AppCompatActivity {
         Intent intent = new Intent(SearchActivity.this, DescriptionActivity.class);
         intent.putExtra("casa", casa);
         startActivity(intent);
+    }
+
+    /**
+     * Manipulates the map once available.
+     * This callback is triggered when the map is ready to be used.
+     * This is where we can add markers or lines, add listeners or move the camera. In this case,
+     * we just add a marker near Sydney, Australia.
+     * If Google Play services is not installed on the device, the user will be prompted to install
+     * it inside the SupportMapFragment. This method will only be triggered once the user has
+     * installed Google Play services and returned to the app.
+     */
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        mMap = googleMap;
+
+        // Add a marker and move the camera
+        LatLng latlng = new LatLng(-25.3814331, -49.2166298);
+        mMap.addMarker(new MarkerOptions().position(latlng).title("qualquer texto"));
+
+        CameraPosition cameraPosition = new CameraPosition.Builder()
+                .target(new LatLng(-25.3814331, -49.2166298))      // Sets the center of the map to Mountain View
+                .zoom(16)                   // Sets the zoom
+                .tilt(45)                   // Sets the tilt of the camera to 30 degrees
+                .build();
+        mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_search, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.opt_filter:
+                Log.i("ANDRE", "SITO");
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+
+        }
     }
 
 

@@ -1,5 +1,6 @@
 package com.andre.guia.adapter;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,20 +10,20 @@ import android.widget.TextView;
 
 import com.andre.guia.R;
 import com.andre.guia.entity.CasaEntity;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-/**
- * Created by juanjoserodriguez on 8/04/16.
- */
 public class CasasAdapter extends RecyclerView.Adapter<CasasAdapter.ViewHolder> implements View.OnClickListener{
 
 
     private List<CasaEntity> casas;
     private View.OnClickListener listener;
+    private Context context;
 
-    public CasasAdapter(List<CasaEntity> casas){
+    public CasasAdapter(List<CasaEntity> casas, Context context){
         this.casas = casas;
+        this.context = context;
 
     }
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -36,8 +37,6 @@ public class CasasAdapter extends RecyclerView.Adapter<CasasAdapter.ViewHolder> 
             imagen1 = (ImageView)v.findViewById(R.id.image1);
             textName = (TextView)v.findViewById(R.id.text_name);
             textEndereco = (TextView)v.findViewById(R.id.text_endereco);
-
-
         }
 
     }
@@ -55,7 +54,13 @@ public class CasasAdapter extends RecyclerView.Adapter<CasasAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.imagen1.setImageResource(casas.get(position).getImage());
+        Picasso.with(this.context).load(casas.get(position).getImage())
+                .placeholder(R.drawable.logo)
+                .error(R.drawable.logo)
+                .resize(256, 256)
+                .centerCrop()
+                .into(holder.imagen1);
+
         holder.textName.setText(casas.get(position).getName());
         holder.textEndereco.setText(casas.get(position).getAddress());
 

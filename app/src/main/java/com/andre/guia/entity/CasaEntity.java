@@ -2,17 +2,21 @@ package com.andre.guia.entity;
 
 import java.io.Serializable;
 
-/**
- * Created by juanjoserodriguez on 8/04/16.
- */
 public class CasaEntity implements Serializable{
     private String name;
     private String address;
     private  String tel;
     private String description;
+    private String bairro;
+    private String cidade;
     private int image;
     private double lat;
     private double lng;
+
+
+    public String getCidade() {return cidade;}
+
+    public void setCidade(String cidade) {this.cidade = cidade;}
 
     public String getName() {
         return name;
@@ -69,6 +73,10 @@ public class CasaEntity implements Serializable{
     public void setLng(double lng) {
         this.lng = lng;
     }
+
+    public String getBairro() {return bairro;}
+
+    public void setBairro(String bairro) {this.bairro = bairro;}
 
     @Override
     public String toString() {
